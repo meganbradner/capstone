@@ -14,15 +14,15 @@
 ### Features
 
 
-#### As someone whose memory isn't amazing, I would like the ability to keep track of things I've read so I don't forget somewhere down the line
+#### "As someone whose memory isn't amazing, I would like the ability to keep track of things I've read so I don't forget somewhere down the line"
 
 - Allows a user to create an account, a personal profile and keep track of what they're reading at the moment, what they've read in the past, and what they'd like to read in the future
 
-#### "As an avid reader, I would like the ability to chat with other readers because I like sharing my love for books with other people 
+#### "As an avid reader, I would like the ability to chat with other readers because I like sharing my love for books with other people" 
 
 - Through comments on a user's reading updates and a forum/chat room, users will be able to interact with other readers
 
-#### As someone who doesn't alwayas know what to read and/or doesn't always remember titles/authors, I want to be able to easily access a large collection of books to find what I'm looking for
+#### "As someone who doesn't alwayas know what to read and/or doesn't always remember titles/authors, I want to be able to easily access a large collection of books to find what I'm looking for"
 
 - Users can access Google Book's entire library through a quick and easy title, author, or keyword search
 
