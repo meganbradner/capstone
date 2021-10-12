@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel Idea</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper deep-purple accent-1">
+            <a href="#" class="brand-logo">Novel Idea</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="nav-item">
+                    <a class="nav-link link-info" href="#">{% if user.is_authenticated %}
+                        Welcome, {{ user.username }}
+                <li><a class="nav-link link-info" href="{% url 'users:log_out' %}">Logout</a></li>
+                </li>
+                {% else %}
+                Welcome, guest
+                <li><a class="nav-link link-info" href="#login">Login</a></li>
+                <li><a class="nav-link link-info" href="{% url 'users:new_user' %}">Register</a></li>
+                {% endif %}
+                </a>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/books.jpeg"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header center-align">Novel Idea</h2>
+                <p class="grey-text text-darken-3 lighten-3 center-align">Welcome to Novel Idea, a place where readers
+                    can keep track of what they're reading and connect with other book lovers along the way!</p>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/books.jpeg"></div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section">
+
+            <div class="container">
+
+                <h1 class="center-align" id="login">Log in</h1>
+
+                <div class="row center-align">
+                    <form class="col s12" action="{% url 'users:log_in' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" id="username" name="username" placeholder="Enter your username">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="password" id="password" name="password" placeholder="Enter your password">
+                            </div>
+                        </div>
+
+
+                        <!-- <button type="submit">Log in</button> -->
+
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+
+
+    <footer class="page-footer deep-purple accent-1">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <!-- <h5 class="white-text">Footer Content</h5> -->
+                    <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <!-- <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul> -->
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright center-align">
+            <div class="container">
+                © 2021 Megan Bradner
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.parallax')
+            var instances = M.Parallax.init(elems)
+        })
+    </script>
+
+</body>
+
+</html>
