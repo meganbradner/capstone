@@ -13,7 +13,7 @@
 
     <nav>
         <div class="nav-wrapper deep-purple accent-1">
-            <a href="#" class="brand-logo">Novel Idea</a>
+            <a href="{% url 'capstone_app:index' %}" class="brand-logo">Novel Idea</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li class="nav-item">
                     <a class="nav-link link-info" href="#">{% if user.is_authenticated %}
@@ -22,11 +22,8 @@
                         </li>
                         <li><a class="nav-link link-info" href="{% url 'users:log_out' %}">Logout</a></li>
                 </li>
-                <!-- {% else %}
-                Welcome, guest
-                <li><a class="nav-link link-info" href="#login">Login</a></li>
-                <li><a class="nav-link link-info" href="{% url 'users:new_user' %}">Register</a></li>
-                {% endif %} -->
+
+                {% endif %} 
                     </a>
             </ul>
         </div>
