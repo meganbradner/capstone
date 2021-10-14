@@ -1,59 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+
+
+  <style>
+    * {
+
+      font-family: 'Manrope', sans-serif;
+
+    }
+  </style>
 
 </head>
+
 <body>
 
-    <nav>
-        <div class="nav-wrapper deep-purple accent-1">
-            <a href="{% url 'capstone_app:index' %}" class="brand-logo">Novel Idea</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="nav-item">
-                    <a class="nav-link link-info" href="#">{% if user.is_authenticated %}
-                        Welcome, {{ user.username }}
-                        <li><a class="nav-link link-info" href="#">Profile</a></li>
-                        </li>
-                        <li><a class="nav-link link-info" href="{% url 'users:log_out' %}">Logout</a></li>
-                </li>
+  <nav>
+    <div class="nav-wrapper deep-purple accent-1">
+      <a href="{% url 'capstone_app:index' %}" class="brand-logo">Novel Idea</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="nav-item">
+          <a class="nav-link link-info" href="{% url 'capstone_app:profile' %}">{% if user.is_authenticated %}
+            Welcome, {{ user.first_name }}
+        <li><a class="nav-link link-info" href="{% url 'capstone_app:browse' %}">Browse</a></li>
+        </li>
+        <li><a class="nav-link link-info" href="{% url 'users:log_out' %}">Logout</a></li>
+        </li>
 
-                {% endif %} 
-                    </a>
-            </ul>
+        {% endif %}
+        </a>
+      </ul>
+    </div>
+  </nav>
+
+
+    <div class="container">
+
+    {% for update in updates %}
+
+    <ul class="collection">
+      <li class="collection-item">
+        
+        "{{ update.update }}"
+        <br>
+        - {{ update.name }}
+        <br>
+        currently reading: {{ update.book }} 
+        <br> 
+        page #: {{ update.page_number }}
+      
+      </li>
+
+    </ul>
+        
+    {% endfor %}
+
+  </div>
+
+
+  <hr>
+
+  <footer class="page-footer deep-purple accent-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <!-- <h5 class="white-text">Footer Content</h5> -->
+          <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
         </div>
-    </nav>
-
-    <h1>{{ message }}</h1>
-    
-    <footer class="page-footer deep-purple accent-1">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <!-- <h5 class="white-text">Footer Content</h5> -->
-              <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
-            </div>
-            <div class="col l4 offset-l2 s12">
-              <!-- <h5 class="white-text">Links</h5>
+        <div class="col l4 offset-l2 s12">
+          <!-- <h5 class="white-text">Links</h5>
               <ul>
                 <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
               </ul> -->
-            </div>
-          </div>
         </div>
-        <div class="footer-copyright center-align">
-          <div class="container">
-          © 2021 Megan Bradner
-          </div>
-        </div>
-      </footer>
+      </div>
+    </div>
+    <div class="footer-copyright center-align">
+      <div class="container">
+        © 2021 Megan Bradner
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>

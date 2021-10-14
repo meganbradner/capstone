@@ -29,6 +29,12 @@ user = get_user_model()
 
 class UserForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+            super(UserForm,self).__init__(*args, **kwargs)
+
+            for fieldname in ['username']:
+                self.fields[fieldname].help_text = None
+
     password1 = forms.CharField(
         label='Password', widget=forms.PasswordInput
     )
@@ -39,7 +45,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'bio')
+        fields = ('username', 'first_name', 'last_name', 'icon', 'bio', 'email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

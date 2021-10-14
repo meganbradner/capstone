@@ -5,13 +5,13 @@ from users.forms import UserForm
 from .models import Book, User, ReadingUpdate, Shelves
  
 class UserAdmin(BaseUserAdmin):
-
+    
     add_form = UserForm
 
     list_display = ('username', 'first_name', 'last_name')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'bio')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'bio', 'icon', 'shelves')}),
     )
     add_fieldsets = (
         (
@@ -20,7 +20,7 @@ class UserAdmin(BaseUserAdmin):
                 'classes': ('wide',),
                 'fields': (
                     'username', 'first_name', 'last_name', 'password1',
-                    'password2', 'bio'
+                    'password2', 'bio', 'icon', 'email'
                 )
             }
         ),

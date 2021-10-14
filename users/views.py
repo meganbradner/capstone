@@ -50,11 +50,13 @@ def new_user(request):
 
     if request.method == 'POST':
         
-        form = UserForm(request.POST)
+        form = UserForm(request.POST, request.FILES)
 
         if form.is_valid():
             
-            form.save()
+            user = form.save()
+            
+            login(request, user)
 
             return redirect('capstone_app:timeline')
 

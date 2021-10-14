@@ -5,6 +5,10 @@ from django.contrib.auth import login
 from django.contrib.auth import get_user_model
 User = get_user_model
 
+
+from .models import User, Book, ReadingUpdate, Shelves
+
+
 def super_check(user):
     return user.username.contains('super')
 
@@ -12,14 +16,23 @@ def index(request):
 
     context = {
         'message': 'Welcome to Novel Idea, a place where readers can keep track of their books and connect with other book lovers along the way!'
+
     }
 
     return render(request, 'capstone_app/index.html', context)
 
 def profile(request):
 
+    books = Book.objects.all(),
+    users = User.objects.all(),
+    shelves = Shelves.objects.all()
+
     context = {
-        'message': 'this is the profile'
+
+        'books': books,
+        'users': users,
+        'shelves': shelves
+
     }
 
     return render(request, 'capstone_app/profile.html', context)
@@ -34,8 +47,12 @@ def browse(request):
 
 def timeline(request):
 
+    updates = ReadingUpdate.objects.all()
+    shelves = Shelves.objects.all()
+
     context = {
-        'message': 'this is the timeline'
+        'updates': updates,
+        'shelves': shelves
     }
 
     return render(request, 'capstone_app/timeline.html', context)
