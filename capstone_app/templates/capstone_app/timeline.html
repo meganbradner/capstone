@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Timeline</title>
 
+  {% load static %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +23,16 @@
 
       font-family: 'Manrope', sans-serif;
 
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
     }
   </style>
 
@@ -44,32 +58,51 @@
     </div>
   </nav>
 
+  <main>
 
     <div class="container">
 
-    {% for update in updates %}
+        <p class="center-align">Update your reading progress:</p>
+          
+      <form method="POST" class="update-form" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit" name="action">Submit</button>
+      </form>
 
-    <ul class="collection">
-      <li class="collection-item">
-        
-        "{{ update.update }}"
-        <br>
-        - {{ update.name }}
-        <br>
-        currently reading: {{ update.book }} 
-        <br> 
-        page #: {{ update.page_number }}
-      
-      </li>
+    </div>
 
-    </ul>
-        
-    {% endfor %}
-
-  </div>
+    <br>
+    <br>
+    <hr>
+    <br>
 
 
-  <hr>
+    <div class="container">
+
+      {% for update in updates %}
+
+      <ul class="collection">
+        <li class="collection-item">
+
+          "{{ update.update }}"
+          <br>
+          - {{ update.name }}
+          <br>
+          currently reading: {{ update.book }}
+          <br>
+          page #: {{ update.page_number }}
+
+        </li>
+
+      </ul>
+
+      {% endfor %}
+
+    </div>
+
+
+  </main>
 
   <footer class="page-footer deep-purple accent-1">
     <div class="container">

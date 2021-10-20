@@ -7,10 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browse</title>
 
-  {% load static %}
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -19,6 +20,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
 
+  {% load static %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
+
+  <script src="{% static 'capstone_app/javascript/main.js' %}" defer></script>
 
   <style>
     * {
@@ -26,7 +32,22 @@
       font-family: 'Manrope', sans-serif;
 
     }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    .shelf {
+      margin: 15px;
+    }
   </style>
+
 </head>
 
 <body>
@@ -47,21 +68,103 @@
       </ul>
     </div>
   </nav>
-  <main>
-    
-    <div class="carousel">
 
-      <a class="carousel-item" href="#"><img src="{% static 'capstone_app/images/beach.jpeg' %}" alt="first"></a>
-      <a class="carousel-item" href="#"><img src="{% static 'capstone_app/images/people.jpeg' %}" alt="second"></a>
-      <a class="carousel-item" href="#"><img src="{% static 'capstone_app/images/heart.jpeg' %}" alt="third"></a>
-      <a class="carousel-item" href="#"><img src="{% static 'capstone_app/images/beach.jpeg' %}" alt="fourth"></a>
-      <a class="carousel-item" href="#"><img src="{% static 'capstone_app/images/people.jpeg' %}" alt="fifth"></a>
-    
-    </div>
+  <main>
+
+    <div id="app">
+
+      <div class="container">
+
+        {% if user.is_authenticated %}
+
+        <h2 class="center-align">Search for a book:</h2>
+
+        <div class="section">
+
+          <div class="row">
+            <form @submit.prevent="findBook" class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">book</i>
+                  <textarea id="icon_prefix2" class="materialize-textarea" v-model="userBook"></textarea>
+                  <label for="icon_prefix2">Book title:</label>
+                </div>
+                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="section">
+
+            <div>
+              <p class="center-align" v-if="foundBooks">
+                <img v-bind:src="foundBooks.items[0].volumeInfo.imageLinks.thumbnail" alt="book cover">
+                <!-- <br> -->
+                <!-- [[ foundBooks.items[0].volumeInfo.title ]] - Written by: [[ foundBooks.items[0].volumeInfo.authors ]] -->
+                <br>
+                <br>
+                [[ foundBooks.items[0].volumeInfo.description ]]
+                <br>
+                <br>
+                <a v-bind:href="foundBooks.items[0].volumeInfo.previewLink" target="_blank">Click here to read a preview
+                  of the book!</a>
+              </p>
+            </div>
+          </div>
+
+
+          <div class="center-align">
+            <h3>Interested in shelving this book?</h2>
+              
+              <a class="shelf waves-effect waves-light btn-small deep-purple lighten-2">Add to currently reading</a>
+              <a class="shelf waves-effect waves-light btn-small deep-purple lighten-2">Add to read</a>
+              <a class="shelf waves-effect waves-light btn-small deep-purple lighten-2">Add to want to read</a>
+          </div>
+
+
+          <div class="divider"></div>
+
+          <div class="section">
+
+
+          </div>
+
+
+          <!-- Author Search -->
+
+          <!-- <div class="row">
+        <form @submit.prevent="findAuthor" class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">person_outline</i>
+              <textarea id="icon_prefix2" class="materialize-textarea" v-model="userAuthor"></textarea>
+              <label for="icon_prefix2">Author name:</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+
+        <div v-for="author in foundAuthors">
+          <p>[[ author ]]</p>
+        </div>
+
+      </div> -->
+
+        </div>
+
+        {% endif %}
+
+      </div>
 
 
   </main>
-
 
   <footer class="page-footer deep-purple accent-1">
     <div class="container">
@@ -87,15 +190,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.carousel')
-      var instances = M.Carousel.init(elems, options)
-    })
-
-  </script>
 
 </body>
 

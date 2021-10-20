@@ -96,18 +96,38 @@
       
       <h2 class="center-align">Shelves</h2>
       
-      
       <br>
-      
 
+      {% for book in books %}
+
+      {% if book.reader == user %}
+
+      {% if book.currently_reading == True %}
+      
       <h4 class="center-align">Currently reading:</h4>
-      
 
+      {{ book.title }} - {{ book.author }}
+
+
+      {% elif book.read == True %}
+      
       <h4 class="center-align">Read:</h4>
 
+      {{ book.title }} - {{ book.author }}
+
+         
+      {% elif book.want_to_read == True %}
 
       <h4 class="center-align">Want to read:</h4>
+      
+      {{ book.title }} - {{ book.author }}
 
+
+      {% endif %}
+
+      {% endif %}
+  
+      {% endfor %}
 
     </div>
 
