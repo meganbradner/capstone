@@ -6,13 +6,13 @@ from .models import ReadingUpdate, Book
 
 
 class UpdateForm(forms.ModelForm):
-             
-
+    
+    book = forms.CharField()
     class Meta:
 
         model = ReadingUpdate
         # fields = '__all__'
-        fields = 'name', 'update', 'page_number'
+        fields = 'name', 'book', 'update', 'page_number'
 
 
 

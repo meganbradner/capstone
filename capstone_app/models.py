@@ -13,7 +13,7 @@ class User(AbstractUser):
         return self.username
 
 class Book(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
     currently_reading = models.BooleanField(default=False)
     read = models.BooleanField(default=False)
@@ -26,12 +26,13 @@ class Book(models.Model):
 
 class ReadingUpdate(models.Model):
     name = models.CharField(max_length=50, null=True)
-    book = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book', null=True)
+    # book = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book', null=True)
+    book = models.CharField(max_length=100, null=True)
     update = models.TextField(max_length=200)
     page_number = models.IntegerField()
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
 
     

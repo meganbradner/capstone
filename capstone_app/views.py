@@ -1,19 +1,18 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.http import JsonResponse, HttpResponse
 
 from django.contrib.auth import get_user_model
-
-from capstone_app.forms import UpdateForm
 User = get_user_model
 
+import json
 
-from. forms import UpdateForm
+from capstone_app.forms import UpdateForm
 
 from .models import User, Book, ReadingUpdate
 
 
-def super_check(user):
-    return user.username.contains('super')
+# def super_check(user):
+#     return user.username.contains('super')
 
 def index(request):
 
@@ -42,6 +41,7 @@ def profile(request):
 
 def browse(request):
 
+ 
     users = User.objects.all(),
     books = Book.objects.all()
 
@@ -62,7 +62,6 @@ def timeline(request):
 
             form.save()
 
-
             # return redirect('capstone_app:timeline')
 
     updates = ReadingUpdate.objects.all() 
@@ -76,3 +75,30 @@ def timeline(request):
 
     return render(request, 'capstone_app/timeline.html', context)
 
+
+def add_current(request): 
+    
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), currently_reading=True)
+
+    return HttpResponse('done!')
+
+def add_read(request): 
+    
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), read=True)
+
+    return HttpResponse('done!')
+
+def add_want(request): 
+    
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), want_to_read=True, reader=data.get('user'))
+
+    return HttpResponse('done!')

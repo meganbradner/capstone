@@ -87,6 +87,7 @@
                 <div class="input-field col s6">
                   <i class="material-icons prefix">book</i>
                   <textarea id="icon_prefix2" class="materialize-textarea" v-model="userBook"></textarea>
+
                   <label for="icon_prefix2">Book title:</label>
                 </div>
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">Submit
@@ -95,6 +96,7 @@
               </div>
             </form>
 
+          
           </div>
 
           <div class="divider"></div>
@@ -103,28 +105,57 @@
 
             <div>
               <p class="center-align" v-if="foundBooks">
+
                 <img v-bind:src="foundBooks.items[0].volumeInfo.imageLinks.thumbnail" alt="book cover">
-                <!-- <br> -->
-                <!-- [[ foundBooks.items[0].volumeInfo.title ]] - Written by: [[ foundBooks.items[0].volumeInfo.authors ]] -->
+                <!-- <br> 
+                [[ foundBooks.items[0].volumeInfo.title ]] - Written by: [[ foundBooks.items[0].volumeInfo.authors ]] -->
                 <br>
                 <br>
                 [[ foundBooks.items[0].volumeInfo.description ]]
                 <br>
                 <br>
-                <a v-bind:href="foundBooks.items[0].volumeInfo.previewLink" target="_blank">Click here to read a preview
-                  of the book!</a>
+                <a v-bind:href="foundBooks.items[0].volumeInfo.previewLink" target="_blank">Click here to read a preview of the book!</a>
               </p>
+
+              <form @submit.prevent="currentlyReading"> 
+                <input type="hidden" v-model="newBook">
+                <!-- <input type="submit" value="Add to currently reading"> -->
+                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
+                  Add to currently reading
+                </button>
+                {% csrf_token %}
+              </form>
+
+              <form @submit.prevent="alreadyRead"> 
+                <input type="hidden" v-model="newBook">
+                <!-- <input type="submit" value="Add to currently reading"> -->
+                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
+                  Add to read
+                </button>
+                {% csrf_token %}
+              </form>
+
+              <form @submit.prevent="wantToRead"> 
+                <input type="hidden" v-model="newBook">
+                <!-- <input type="submit" value="Add to currently reading"> -->
+                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
+                  Add to want to read
+                </button>
+                {% csrf_token %}
+              </form>
+
+
             </div>
+
           </div>
 
-
-          <div class="center-align">
+          <!-- <div class="center-align">
             <h3>Interested in shelving this book?</h2>
               
               <a class="shelf waves-effect waves-light btn-small deep-purple lighten-2">Add to currently reading</a>
               <a class="shelf waves-effect waves-light btn-small deep-purple lighten-2">Add to read</a>
               <a class="shelf waves-effect waves-light btn-small deep-purple lighten-2">Add to want to read</a>
-          </div>
+          </div> -->
 
 
           <div class="divider"></div>

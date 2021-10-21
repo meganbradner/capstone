@@ -62,12 +62,13 @@
 
     <div class="container">
 
-        <p class="center-align">Update your reading progress:</p>
-          
+      <h5 class="center-align">Update your reading progress:</h5>
+
       <form method="POST" class="update-form" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit" name="action">Submit</button>
+        <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
+          name="action">Submit</button>
       </form>
 
     </div>
@@ -79,6 +80,10 @@
 
 
     <div class="container">
+
+      <h5 class="center-align">See what your friends are reading!</h5>
+
+      <br>
 
       {% for update in updates %}
 

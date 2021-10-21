@@ -7,8 +7,10 @@ const App = {
         return  {
             userBook: '',
             userAuthor: '',
+            newBook: '',
             foundBooks: null,
-            foundAuthors: null
+            foundAuthors: null,
+            csrfmiddlewaretoken: ''
         }
     },
 
@@ -21,34 +23,72 @@ const App = {
             }).then(response => {
                 console.log(response.data)
                 this.foundBooks = response.data
-                
-                all_books = {}
-                for (let i = 0; length(); i++) {
-                    book_data = Book(
-                        title = i['title'],
-                        author = i['authors'],
-                        description = i['description'],
-                        image = i['imageLinks']
-
-                    )
-                }
             })
         },
-
-        findAuthor() {
+        
+        currentlyReading() {
             axios({
-                method: 'get',
-                url: `https://www.googleapis.com/books/v1/volumes?q=${this.userAuthor}`,
-                // params: {
-                //     q: this.userAuthor
-                // },
-            }).then(response => {
-                console.log(response.data.items[0].volumeInfo)
-                this.foundAuthors = response.data.items[0].volumeInfo
+                method: 'post',
+                url: '/add-current',
+                data: {
+                    title: this.foundBooks.items[0].volumeInfo.title,
+                    author: this.foundBooks.items[0].volumeInfo.authors,
+                    image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
+                },
+                headers: {
+                    'X-CSRFToken': this.csrfmiddlewaretoken
+                }
+            }).then(response => this.findBook())
+    },
 
-            })
+    alreadyRead() {
+        axios({
+            method: 'post',
+            url: '/add-read',
+            data: {
+                title: this.foundBooks.items[0].volumeInfo.title,
+                author: this.foundBooks.items[0].volumeInfo.authors,
+                image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
+            },
+            headers: {
+                'X-CSRFToken': this.csrfmiddlewaretoken
+            }
+        }).then(response => this.findBook())
+},
+
+wantToRead() {
+    axios({
+        method: 'post',
+        url: '/add-want',
+        data: {
+            title: this.foundBooks.items[0].volumeInfo.title,
+            author: this.foundBooks.items[0].volumeInfo.authors,
+            image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
         },
+        headers: {
+            'X-CSRFToken': this.csrfmiddlewaretoken
+        }
+    }).then(response => this.findBook())
+}
 
+
+        // findAuthor() {
+        //     axios({
+        //         method: 'get',
+        //         url: `https://www.googleapis.com/books/v1/volumes?q=${this.userAuthor}`,
+        //         // params: {
+        //         //     q: this.userAuthor
+        //         // },
+        //     }).then(response => {
+        //         console.log(response.data.items[0].volumeInfo)
+        //         this.foundAuthors = response.data.items[0].volumeInfo
+
+        //     })
+        // },
+
+    },
+    mounted() {
+        this.csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
     }
 
 }

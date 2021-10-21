@@ -106,21 +106,26 @@
       
       <h4 class="center-align">Currently reading:</h4>
 
-      {{ book.title }} - {{ book.author }}
-
+      
+      <img src="{{ book.image }}">
+      
+      <!-- {{ book.title }}  -->
 
       {% elif book.read == True %}
       
       <h4 class="center-align">Read:</h4>
 
-      {{ book.title }} - {{ book.author }}
+      <img src="{{ book.image }}">
 
+      <!-- {{ book.title }}  -->
          
       {% elif book.want_to_read == True %}
 
       <h4 class="center-align">Want to read:</h4>
       
-      {{ book.title }} - {{ book.author }}
+      <img src="{{ book.image }}">
+
+      <!-- {{ book.title }}  -->
 
 
       {% endif %}
