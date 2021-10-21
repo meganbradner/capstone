@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -30,6 +31,7 @@ class ReadingUpdate(models.Model):
     book = models.CharField(max_length=100, null=True)
     update = models.TextField(max_length=200)
     page_number = models.IntegerField()
+    date = models.DateField(default=timezone.now().strftime('%Y-%m-%d'))
 
     def __str__(self):
         return self.name

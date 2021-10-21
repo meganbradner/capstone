@@ -74,15 +74,9 @@
           </div>
         </div>
 
-        <!-- <h2 class="right-align">{{ user.first_name }} {{ user.last_name }}</h2> -->
-
 
         <br>
         
-        <!-- <img class="materialboxed" width="350" src="{{ user.icon.url }}" alt="{{ user.first_name }}"> -->
-        
-        <!-- <h6 class="right-align">About the reader:</h4>
-        <p class="right-align">{{ user.bio }}</p> -->
 
       </div>
 
@@ -100,44 +94,46 @@
 
       {% for book in books %}
 
+
       {% if book.reader == user %}
 
-      {% if book.currently_reading == True %}
+
+      {% if book.currently_reading == True %} 
       
       <h4 class="center-align">Currently reading:</h4>
 
       
       <img src="{{ book.image }}">
       
-      <!-- {{ book.title }}  -->
 
+      
       {% elif book.read == True %}
       
       <h4 class="center-align">Read:</h4>
-
+      
       <img src="{{ book.image }}">
+      
+      
 
-      <!-- {{ book.title }}  -->
-         
       {% elif book.want_to_read == True %}
 
       <h4 class="center-align">Want to read:</h4>
       
       <img src="{{ book.image }}">
+         
 
-      <!-- {{ book.title }}  -->
-
-
-      {% endif %}
 
       {% endif %}
+
+      {% endif %}
+      
   
       {% endfor %}
 
+
+  
     </div>
 
-    <!-- <div class="divider"></div>
-      <div class="section"> -->
 
   </div>
 

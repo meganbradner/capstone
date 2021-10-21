@@ -1,21 +1,22 @@
+
 const App = {
-    
+
     delimiters: ['[[', ']]'],
 
     data() {
 
-        return  {
+        return {
             userBook: '',
             userAuthor: '',
             newBook: '',
+            csrfmiddlewaretoken: '',
             foundBooks: null,
             foundAuthors: null,
-            csrfmiddlewaretoken: ''
         }
     },
 
     methods: {
-        
+
         findBook() {
             axios({
                 method: 'get',
@@ -25,7 +26,7 @@ const App = {
                 this.foundBooks = response.data
             })
         },
-        
+
         currentlyReading() {
             axios({
                 method: 'post',
@@ -39,37 +40,37 @@ const App = {
                     'X-CSRFToken': this.csrfmiddlewaretoken
                 }
             }).then(response => this.findBook())
-    },
-
-    alreadyRead() {
-        axios({
-            method: 'post',
-            url: '/add-read',
-            data: {
-                title: this.foundBooks.items[0].volumeInfo.title,
-                author: this.foundBooks.items[0].volumeInfo.authors,
-                image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
-            },
-            headers: {
-                'X-CSRFToken': this.csrfmiddlewaretoken
-            }
-        }).then(response => this.findBook())
-},
-
-wantToRead() {
-    axios({
-        method: 'post',
-        url: '/add-want',
-        data: {
-            title: this.foundBooks.items[0].volumeInfo.title,
-            author: this.foundBooks.items[0].volumeInfo.authors,
-            image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
         },
-        headers: {
-            'X-CSRFToken': this.csrfmiddlewaretoken
+
+        alreadyRead() {
+            axios({
+                method: 'post',
+                url: '/add-read',
+                data: {
+                    title: this.foundBooks.items[0].volumeInfo.title,
+                    author: this.foundBooks.items[0].volumeInfo.authors,
+                    image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
+                },
+                headers: {
+                    'X-CSRFToken': this.csrfmiddlewaretoken
+                }
+            }).then(response => this.findBook())
+        },
+
+        wantToRead() {
+            axios({
+                method: 'post',
+                url: '/add-want',
+                data: {
+                    title: this.foundBooks.items[0].volumeInfo.title,
+                    author: this.foundBooks.items[0].volumeInfo.authors,
+                    image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
+                },
+                headers: {
+                    'X-CSRFToken': this.csrfmiddlewaretoken
+                }
+            }).then(response => this.findBook())
         }
-    }).then(response => this.findBook())
-}
 
 
         // findAuthor() {
