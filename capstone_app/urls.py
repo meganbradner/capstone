@@ -15,6 +15,7 @@ urlpatterns = [
     path('add-current', views.add_current, name='add_current'),
     path('add-read', views.add_read, name='add_read'),
     path('add-want', views.add_want, name='add_want'),
+    path('finished/<int:id>', views.finished, name='finished'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 

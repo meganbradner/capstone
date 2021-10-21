@@ -27,13 +27,21 @@ def index(request):
 def profile(request):
 
     books = Book.objects.all()
-    users = User.objects.all(), 
-    print(books)
+    users = User.objects.all()
+
+
+    current = Book.objects.filter(currently_reading = True)
+    read = Book.objects.filter(read = True)
+    want = Book.objects.filter(want_to_read = True)
+
 
     context = {
 
         'books': books,
         'users': users,
+        'current': current,
+        'read': read,
+        'want': want
   
     }
 
@@ -78,38 +86,46 @@ def timeline(request):
 
 def add_current(request): 
 
+    if request.user.is_authenticated:
 
-    if request.method == 'POST':
+        if request.method == 'POST':
 
-        data = json.loads(request.body)
-        Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), currently_reading=True)
+            data = json.loads(request.body)
+            Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), currently_reading=True, reader=request.user)
 
-
-
-    return HttpResponse('done!')
+        return HttpResponse('done!')
 
 def add_read(request): 
-    
-    if request.method == 'POST':
 
-        data = json.loads(request.body)
-        Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), read=True)
+    if request.user.is_authenticated:
 
+        if request.method == 'POST':
 
-        print(data)
+            data = json.loads(request.body)
+            Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), read=True, reader=request.user)
 
-    return HttpResponse('done!')
+        return HttpResponse('done!')
 
 def add_want(request): 
 
+    if request.user.is_authenticated:
 
-    if request.method == 'POST':
-
-
-        data = json.loads(request.body)
-        Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), want_to_read=True)
+        if request.method == 'POST':
 
 
+            data = json.loads(request.body)
+            Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), want_to_read=True, reader=request.user)
 
 
-    return HttpResponse('done!')
+        return HttpResponse('done!')
+
+
+def finished(request, id): 
+
+    id = request.POST['id']
+    all_done = Book.objects.get(id=id)
+    all_done.read = True
+    all_done.currently_reading = False
+    all_done.save()
+     
+    return redirect('capstone_app:profile')

@@ -19,12 +19,15 @@
 
 
   <style>
+
     * {
 
       font-family: 'Manrope', sans-serif;
 
     }
+
   </style>
+
 
 </head>
 
@@ -37,8 +40,8 @@
         <li class="nav-item">
           <a class="nav-link link-info" href="#">{% if user.is_authenticated %}
             Welcome, {{ user.first_name }}
-          <li><a class="nav-link link-info" href="{% url 'capstone_app:timeline' %}">Timeline</a></li>
-          <li><a class="nav-link link-info" href="{% url 'capstone_app:browse' %}">Browse</a></li>
+        <li><a class="nav-link link-info" href="{% url 'capstone_app:timeline' %}">Timeline</a></li>
+        <li><a class="nav-link link-info" href="{% url 'capstone_app:browse' %}">Browse</a></li>
         <li><a class="nav-link link-info" href="{% url 'users:log_out' %}">Logout</a></li>
         </li>
 
@@ -60,9 +63,9 @@
 
           <div class="col s12">
             <h1 class="center-align">
-            {{ user.first_name }} {{ user.last_name }}
-          </h1>
-          <!-- <p class="right-align">{{ user.username }}</p> -->
+              {{ user.first_name }} {{ user.last_name }}
+            </h1>
+            <!-- <p class="right-align">{{ user.username }}</p> -->
           </div>
 
           <div class="col s6">
@@ -70,13 +73,13 @@
           </div>
           <div class="col s6">
             <h6 class="center-align">About the reader:</h4>
-            <p class="center-align">{{ user.bio }}</p>
+              <p class="center-align">{{ user.bio }}</p>
           </div>
         </div>
 
 
         <br>
-        
+
 
       </div>
 
@@ -85,53 +88,64 @@
 
     <div class="divider"></div>
 
-    <div class="section">
+    <div class="section container">
 
-      
-      <h2 class="center-align">Shelves</h2>
-      
-      <br>
+
+      <h4 class="center-align" style="text-decoration: underline">Currently reading:</h4>
 
       {% for book in books %}
 
+      {% if book.reader == user %}
+
+      {% if book.currently_reading == True %}
+
+      <img src="{{ book.image }}">
+
+      <form action="{% url 'capstone_app:finished' book.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ book.id }}">
+        <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">I'm done!</button>
+      </form>
+
+      {% endif %}
+
+      {% endif %}
+
+      {% endfor %}
+
+      <h4 class="center-align" style="text-decoration: underline">Read:</h4>
+
+      {% for book in books %}
 
       {% if book.reader == user %}
 
+      {% if book.read == True %}
 
-      {% if book.currently_reading == True %} 
-      
-      <h4 class="center-align">Currently reading:</h4>
-
-      
       <img src="{{ book.image }}">
-      
-
-      
-      {% elif book.read == True %}
-      
-      <h4 class="center-align">Read:</h4>
-      
-      <img src="{{ book.image }}">
-      
-      
-
-      {% elif book.want_to_read == True %}
-
-      <h4 class="center-align">Want to read:</h4>
-      
-      <img src="{{ book.image }}">
-         
-
 
       {% endif %}
 
       {% endif %}
-      
-  
+
+      {% endfor %}
+
+      <h4 class="center-align" style="text-decoration: underline">Want to read:</h4>
+
+      {% for book in books %}
+
+      {% if book.reader == user %}
+
+      {% if book.want_to_read == True %}
+
+      <img src="{{ book.image }}">
+
+      {% endif %}
+
+      {% endif %}
+
       {% endfor %}
 
 
-  
     </div>
 
 

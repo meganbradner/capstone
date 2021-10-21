@@ -49,7 +49,7 @@ const App = {
                 data: {
                     title: this.foundBooks.items[0].volumeInfo.title,
                     author: this.foundBooks.items[0].volumeInfo.authors,
-                    image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail
+                    image: this.foundBooks.items[0].volumeInfo.imageLinks.thumbnail,
                 },
                 headers: {
                     'X-CSRFToken': this.csrfmiddlewaretoken
