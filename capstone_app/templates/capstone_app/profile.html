@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile</title>
 
+  {% load static %}
 
   <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
 
@@ -17,17 +18,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
 
-
   <style>
-
-    * {
-
-      font-family: 'Manrope', sans-serif;
-
+    #novel {
+      padding-left: 10px;
     }
 
-  </style>
+    #image {
+      box-shadow: 20px 20px 10px #69696b56;
+    }
 
+    h1 {
+      padding-bottom: 20px;
+    }
+
+    h4 {
+      padding: 30px 0;
+    }
+
+    .book {
+      width: 160px;
+      height: 215px;
+      padding: 20px;
+
+    }
+  </style>
 
 </head>
 
@@ -35,7 +49,7 @@
 
   <nav>
     <div class="nav-wrapper deep-purple accent-1">
-      <a href="{% url 'capstone_app:index' %}" class="brand-logo">Novel Idea</a>
+      <a href="{% url 'capstone_app:index' %}" class="brand-logo" id="novel">Novel Idea</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="nav-item">
           <a class="nav-link link-info" href="#">{% if user.is_authenticated %}
@@ -69,7 +83,8 @@
           </div>
 
           <div class="col s6">
-            <img class="materialboxed" width="350" src="{{ user.icon.url }}" alt="{{ user.first_name }}">
+            <img id="image" width="300" src="{{ user.icon.url }}"
+              alt="{{ user.first_name }}">
           </div>
           <div class="col s6">
             <h6 class="center-align">About the reader:</h4>
@@ -90,62 +105,72 @@
 
     <div class="section container">
 
+      <div class="center-align">
 
-      <h4 class="center-align" style="text-decoration: underline">Currently reading:</h4>
+        <h4 style="text-decoration: underline">Currently reading:</h4>
 
-      {% for book in books %}
+        {% for book in books %}
 
-      {% if book.reader == user %}
+        {% if book.reader == user %}
 
-      {% if book.currently_reading == True %}
+        {% if book.currently_reading == True %}
 
-      <img src="{{ book.image }}">
+        <img src="{{ book.image }}" class="book">
 
-      <form action="{% url 'capstone_app:finished' book.id %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="id" value="{{ book.id }}">
-        <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">I'm done!</button>
-      </form>
+        <form @submit.prevent action="{% url 'capstone_app:finished' book.id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ book.id }}">
+          <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">I've finished this
+            book!</button>
+        </form>
 
-      {% endif %}
+        {% endif %}
 
-      {% endif %}
+        {% endif %}
 
-      {% endfor %}
+        {% endfor %}
 
-      <h4 class="center-align" style="text-decoration: underline">Read:</h4>
+      </div>
 
-      {% for book in books %}
+      <div class="center-align">
 
-      {% if book.reader == user %}
+        <h4 style="text-decoration: underline">Read:</h4>
 
-      {% if book.read == True %}
+        {% for book in books %}
 
-      <img src="{{ book.image }}">
+        {% if book.reader == user %}
 
-      {% endif %}
+        {% if book.read == True %}
 
-      {% endif %}
+        <img src="{{ book.image }}" class="book">
 
-      {% endfor %}
+        {% endif %}
 
-      <h4 class="center-align" style="text-decoration: underline">Want to read:</h4>
+        {% endif %}
 
-      {% for book in books %}
+        {% endfor %}
 
-      {% if book.reader == user %}
+      </div>
 
-      {% if book.want_to_read == True %}
+      <div class="center-align">
 
-      <img src="{{ book.image }}">
+        <h4 style="text-decoration: underline">Want to read:</h4>
 
-      {% endif %}
+        {% for book in books %}
 
-      {% endif %}
+        {% if book.reader == user %}
 
-      {% endfor %}
+        {% if book.want_to_read == True %}
 
+        <img src="{{ book.image }}" class="book">
 
+        {% endif %}
+
+        {% endif %}
+
+        {% endfor %}
+
+      </div>
     </div>
 
 

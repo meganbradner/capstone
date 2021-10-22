@@ -112,7 +112,6 @@ def add_want(request):
 
         if request.method == 'POST':
 
-
             data = json.loads(request.body)
             Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), want_to_read=True, reader=request.user)
 
