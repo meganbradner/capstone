@@ -42,11 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+    'crispy_forms_materialize',
+
     'capstone_app',
     'users'
 ]
 
 AUTH_USER_MODEL = 'capstone_app.User'
+
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

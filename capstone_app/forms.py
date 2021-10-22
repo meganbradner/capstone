@@ -12,7 +12,7 @@ class UpdateForm(forms.ModelForm):
 
         model = ReadingUpdate
         # fields = '__all__'
-        fields = 'name', 'book', 'update', 'page_number', 'date'
+        fields = 'name', 'book', 'update', 'page_number'
 
 
 

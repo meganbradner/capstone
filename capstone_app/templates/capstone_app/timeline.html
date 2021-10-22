@@ -9,7 +9,12 @@
 
   {% load static %}
 
+  {% load crispy_forms_tags %}
+
+
   <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -48,7 +53,7 @@
 
       <form method="POST" class="update-form" action="">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
           name="action">Submit</button>
       </form>
@@ -67,7 +72,47 @@
 
       <br>
 
-      {% for update in updates %}
+      <ul class="collection">
+
+        {% for update in updates %}
+
+        {% for user in users %}
+
+        {% if update.name in user.first_name %}
+
+        <li class="collection-item avatar">
+          <img src="{{ user.icon.url }}" alt="user icon" class="circle">
+          <span class="title">
+            {{ user.username }}
+            <!-- {{ update.name }} -->
+          </span>
+          <p>"{{ update.update }}"<br><br>
+
+            <!-- {% for book in books %}
+
+            {% if update.book in book.title %} -->
+
+            currently reading: {{ update.book }}
+
+            <!-- <img src="{{ book.image }}" alt="book image" >
+
+          {% endif %}
+
+            {% endfor %} -->
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">bookmark</i></a>
+        </li>
+
+        {% endif %}
+
+        {% endfor %}
+
+        {% endfor %}
+
+
+      </ul>
+
+      <!-- {% for update in updates %}
 
       <ul class="collection">
         <li class="collection-item">
@@ -84,7 +129,7 @@
 
       </ul>
 
-      {% endfor %}
+      {% endfor %} -->
 
     </div>
 

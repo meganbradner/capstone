@@ -74,10 +74,14 @@ def timeline(request):
 
     updates = ReadingUpdate.objects.order_by('-date') 
     form = UpdateForm()
+    users = User.objects.all()
+    books = Book.objects.all()
 
     context = {
         'updates': updates,
-        'form': form
+        'form': form,
+        'users': users,
+        'books': books
   
     }
 
