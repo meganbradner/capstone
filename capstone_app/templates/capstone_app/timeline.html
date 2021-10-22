@@ -53,7 +53,17 @@
 
       <form method="POST" class="update-form" action="">
         {% csrf_token %}
-        {{ form|crispy }}
+        <!-- {{ form|crispy }} -->
+        {% for field in form %}
+        <div class="row">
+          <div class="col-md-2">
+            {{ field.label_tag }}
+          </div>
+          <div class="col-md-10 pull-left">
+            {{ field }}
+          </div>
+        </div>
+        {% endfor %}
         <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
           name="action">Submit</button>
       </form>
@@ -62,9 +72,9 @@
 
     <br>
     <br>
-    <hr>
     <br>
 
+    <div class="divider"></div>
 
     <div class="container">
 
@@ -81,26 +91,33 @@
         {% if update.name in user.first_name %}
 
         <li class="collection-item avatar">
+
           <img src="{{ user.icon.url }}" alt="user icon" class="circle">
+
           <span class="title">
             {{ user.username }}
             <!-- {{ update.name }} -->
           </span>
+
           <p>"{{ update.update }}"<br><br>
 
-            <!-- {% for book in books %}
+            {% for book in books %}
 
-            {% if update.book in book.title %} -->
+            {% if update.book in book.title %}
 
-            currently reading: {{ update.book }}
+            on page
+            {{ update.page_number }}
+            of:
+            <br>
+            <img src="{{ book.image }}" alt="book image">
+            <!-- {{ update.book }} -->
 
-            <!-- <img src="{{ book.image }}" alt="book image" >
+            {% endif %}
 
-          {% endif %}
-
-            {% endfor %} -->
+            {% endfor %}
           </p>
           <a href="#!" class="secondary-content"><i class="material-icons">bookmark</i></a>
+
         </li>
 
         {% endif %}

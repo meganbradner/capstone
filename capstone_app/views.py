@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
+from django.utils.text import slugify 
 
 from django.contrib.auth import get_user_model
 User = get_user_model
