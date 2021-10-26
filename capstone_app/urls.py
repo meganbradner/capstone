@@ -16,6 +16,7 @@ urlpatterns = [
     path('add-read', views.add_read, name='add_read'),
     path('add-want', views.add_want, name='add_want'),
     path('finished/<int:id>', views.finished, name='finished'),
+    path('like-update/<int:id>', views.like_update, name='like_update'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 

@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
+
 from django.urls import reverse
 
 
@@ -22,7 +23,7 @@ class Book(models.Model):
     currently_reading = models.BooleanField(default=False)
     read = models.BooleanField(default=False)
     want_to_read = models.BooleanField(default=False)
-    reader = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user', null=True)
+    reader = models.ForeignKey(User, on_delete=models.PROTECT, related_name='reader', null=True)
     image = models.ImageField(upload_to="images/", null=True)
 
     def __str__(self):
@@ -30,14 +31,21 @@ class Book(models.Model):
 
 class ReadingUpdate(models.Model):
     name = models.CharField(max_length=50, null=True)
-    # book = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book', null=True)
     book = models.CharField(max_length=100, null=True)
     update = models.TextField(max_length=200)
     page_number = models.IntegerField()
-    date = models.DateField(default=timezone.now().strftime('%Y-%m-%d'))
+    date = models.DateTimeField(auto_now_add=True)
+    liked = models.BooleanField(default=False)
+    number_of_likes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.book
+
+class Comments(models.Model):
+    post = models.ForeignKey(ReadingUpdate, on_delete=models.PROTECT, related_name='commented_post')
+    name = models.CharField(max_length=100)
+    comment = models.TextField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-
-
-    

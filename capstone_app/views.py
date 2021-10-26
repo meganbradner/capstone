@@ -7,7 +7,7 @@ User = get_user_model
 
 import json
 
-from capstone_app.forms import UpdateForm
+from capstone_app.forms import CommentForm, UpdateForm
 
 from .models import User, Book, ReadingUpdate
 
@@ -61,7 +61,7 @@ def browse(request):
 
     return render(request, 'capstone_app/browse.html', context)
 
-def timeline(request):
+def update_form(request):
 
     if request.method == 'POST':
 
@@ -73,14 +73,53 @@ def timeline(request):
 
             return redirect('capstone_app:timeline')
 
+def comment_form(request):
+
+    if request.method == 'POST':
+
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()       
+
+            return redirect('capstone_app:timeline')
+
+
+def timeline(request):
+
+    # if request.method == 'POST':
+
+    #     form = UpdateForm(request.POST)
+
+    #     if form.is_valid():
+
+    #         form.save()
+
+    #         return redirect('capstone_app:timeline')
+
+    # if request.method == 'POST':
+
+    #     second_form = CommentForm(request.POST)
+
+    #     if second_form.is_valid():
+
+    #         second_form.save()       
+
+    #         return redirect('capstone_app:timeline')
+
+
     updates = ReadingUpdate.objects.order_by('-date') 
     form = UpdateForm()
     users = User.objects.all()
     books = Book.objects.all()
+    second_form = CommentForm()
+
 
     context = {
         'updates': updates,
         'form': form,
+        'second_form': second_form,
         'users': users,
         'books': books
   
@@ -133,3 +172,14 @@ def finished(request, id):
     all_done.save()
      
     return redirect('capstone_app:profile')
+
+
+def like_update(request, id):
+
+    id = request.POST['id']
+    all_likes = ReadingUpdate.objects.get(id=id)
+    all_likes.liked = True
+    all_likes.number_of_likes += 1
+    all_likes.save()
+
+    return redirect('capstone_app:timeline')

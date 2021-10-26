@@ -17,11 +17,28 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
 
+
+
+  <style>
+    .update {
+      padding: 20px;
+    }
+
+    .gray {
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+    }
+
+    #id {
+      margin: 20px;
+    }
+  </style>
 
 </head>
 
@@ -84,6 +101,7 @@
 
       <ul class="collection">
 
+
         {% for update in updates %}
 
         {% for user in users %}
@@ -99,32 +117,75 @@
             <!-- {{ update.name }} -->
           </span>
 
+
           <p>"{{ update.update }}"<br><br>
+
+            on page
+            {{ update.page_number }}
+            of:
+
+            <br>
 
             {% for book in books %}
 
             {% if update.book in book.title %}
 
-            on page
-            {{ update.page_number }}
-            of:
-            <br>
             <img src="{{ book.image }}" alt="book image">
-            <!-- {{ update.book }} -->
 
             {% endif %}
 
             {% endfor %}
+
           </p>
           <a href="#!" class="secondary-content"><i class="material-icons">bookmark</i></a>
 
+          <br>
+
+          <p class="gray"><i class="material-icons">thumb_up</i> likes: {{ update.number_of_likes }}</p>
+
+
+          <p class="gray"><i class="material-icons">message</i> comments: 0</p>
+
+
         </li>
+
+        <form @submit.prevent action="{% url 'capstone_app:like_update' update.id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ update.id }}">
+          <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">Like</button>
+        </form>
+
+        <button data-target="modal1" class="btn modal-trigger deep-purple lighten-2">Comment</button>
+
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Add new comment:</h4>
+
+            <!-- <form method="POST" class="comment-form" action="">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
+                name="action">Submit</button>
+            </form> -->
+
+            <form method="POST" class="comment-form">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="save btn btn-default btn-info deep-purple lighten-2">Comment</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+          </div>
+        </div>
 
         {% endif %}
 
         {% endfor %}
 
         {% endfor %}
+
 
 
       </ul>
@@ -149,7 +210,6 @@
       {% endfor %} -->
 
     </div>
-
 
   </main>
 
@@ -177,6 +237,16 @@
       </div>
     </div>
   </footer>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+    });
+
+  </script>
+
 </body>
 
 </html>

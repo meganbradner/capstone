@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from users.forms import UserForm
-from .models import Book, User, ReadingUpdate
+from .models import Book, User, ReadingUpdate, Comments
  
 class UserAdmin(BaseUserAdmin):
     
@@ -25,13 +25,10 @@ class UserAdmin(BaseUserAdmin):
             }
         ),
     )
-   
 
 
 admin.site.register(User, UserAdmin)
 
-
 admin.site.register(ReadingUpdate)
 admin.site.register(Book)
-
-
+admin.site.register(Comments)
