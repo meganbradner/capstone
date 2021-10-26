@@ -9,7 +9,7 @@ import json
 
 from capstone_app.forms import CommentForm, UpdateForm
 
-from .models import User, Book, ReadingUpdate
+from .models import User, Book, ReadingUpdate, Comments
 
 
 # def super_check(user):
@@ -60,8 +60,10 @@ def browse(request):
     }
 
     return render(request, 'capstone_app/browse.html', context)
+  
 
-def update_form(request):
+
+def timeline(request):
 
     if request.method == 'POST':
 
@@ -73,47 +75,24 @@ def update_form(request):
 
             return redirect('capstone_app:timeline')
 
-def comment_form(request):
 
     if request.method == 'POST':
 
-        form = CommentForm(request.POST)
+        second_form = CommentForm(request.POST)
 
-        if form.is_valid():
+        if second_form.is_valid():
 
-            form.save()       
+            second_form.save()       
 
             return redirect('capstone_app:timeline')
 
 
-def timeline(request):
-
-    # if request.method == 'POST':
-
-    #     form = UpdateForm(request.POST)
-
-    #     if form.is_valid():
-
-    #         form.save()
-
-    #         return redirect('capstone_app:timeline')
-
-    # if request.method == 'POST':
-
-    #     second_form = CommentForm(request.POST)
-
-    #     if second_form.is_valid():
-
-    #         second_form.save()       
-
-    #         return redirect('capstone_app:timeline')
-
-
     updates = ReadingUpdate.objects.order_by('-date') 
     form = UpdateForm()
+    second_form = CommentForm()
     users = User.objects.all()
     books = Book.objects.all()
-    second_form = CommentForm()
+    comments = Comments.objects.all()
 
 
     context = {
@@ -121,11 +100,13 @@ def timeline(request):
         'form': form,
         'second_form': second_form,
         'users': users,
-        'books': books
+        'books': books,
+        'comments': comments
   
     }
 
     return render(request, 'capstone_app/timeline.html', context)
+
 
 
 def add_current(request): 
@@ -183,3 +164,13 @@ def like_update(request, id):
     all_likes.save()
 
     return redirect('capstone_app:timeline')
+
+def start_reading(request, id): 
+
+    id = request.POST['id']
+    start_to_read = Book.objects.get(id=id)
+    start_to_read.want_to_read = False
+    start_to_read.currently_reading = True
+    start_to_read.save()
+     
+    return redirect('capstone_app:profile')

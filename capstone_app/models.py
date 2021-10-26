@@ -37,15 +37,17 @@ class ReadingUpdate(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     liked = models.BooleanField(default=False)
     number_of_likes = models.IntegerField(default=0)
+    number_of_comments = models.IntegerField(default=0)
 
     def __str__(self):
         return self.book
 
 class Comments(models.Model):
-    post = models.ForeignKey(ReadingUpdate, on_delete=models.PROTECT, related_name='commented_post')
+    # post = models.ForeignKey(ReadingUpdate, on_delete=models.PROTECT, related_name='commented_post')
+    book_name = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     comment = models.TextField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.book_name

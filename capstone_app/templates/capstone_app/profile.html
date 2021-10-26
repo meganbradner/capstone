@@ -170,6 +170,12 @@
 
         <img src="{{ book.image }}" class="book">
 
+        <form @submit.prevent action="{% url 'capstone_app:start_reading' book.id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ book.id }}">
+          <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">Move to currently reading</button>
+        </form>
+
         {% endif %}
 
         {% endif %}
