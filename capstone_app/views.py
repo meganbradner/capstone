@@ -178,3 +178,4 @@ def start_reading(request, id):
     start_to_read.save()
      
     return redirect('capstone_app:profile')
+

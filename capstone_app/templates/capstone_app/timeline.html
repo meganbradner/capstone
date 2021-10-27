@@ -46,7 +46,6 @@
     #section {
       display: inline;
     }
-
   </style>
 
 </head>
@@ -77,19 +76,10 @@
 
       <h5 class="center-align">Update your reading progress:</h5>
 
-      <form method="POST" class="update-form" action="" enctype="multipart/form-data">
+      <form method="POST" class="update-form" action="">
         {% csrf_token %}
-        <!-- {{ form|crispy }} -->
-        {% for field in form %}
-        <div class="row">
-          <div class="col-md-2">
-            {{ field.label_tag }}
-          </div>
-          <div class="col-md-10 pull-left">
-            {{ field }}
-          </div>
-        </div>
-        {% endfor %}
+        {{ form.as_p }}
+
         <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
           name="action">Submit</button>
       </form>
@@ -133,6 +123,7 @@
             of:
 
             <br>
+            <br>
 
             <img src="{{ update.book.image }}" alt="book image">
 
@@ -148,7 +139,8 @@
           <div class="section" id="section">
 
 
-            <p class="gray"><i class="material-icons" style="font-size: 17px;">thumb_up</i> likes: {{ update.number_of_likes }}</p>
+            <p class="gray"><i class="material-icons" style="font-size: 17px;">thumb_up</i> 
+              likes: {{ update.number_of_likes }}</p>
 
 
           </div>
@@ -163,21 +155,24 @@
 
             {% for comment in comments %}
 
-            {% if comment.book_name in update.book.title %}
+            {% if comment.post.update == update.update %}
 
             <li class="collection-item">
 
               "{{ comment.comment }}"
               <br>
+
               - {{ comment.name }}
+              
+              
               <br>
-
-              {% endif %}
-
-              {% endfor %}
-
-
+              
             </li>
+            
+            {% endif %}
+
+            {% endfor %}
+
 
           </ul>
 
@@ -186,19 +181,20 @@
 
 
         <div class="valign-wrapper">
-          
-        <form @submit.prevent action="{% url 'capstone_app:like_update' update.id %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="{{ update.id }}">
-          <button class="btn waves-effect waves-light deep-purple lighten-2 input-field btn-small" id="id">Like</button>
-        </form>
 
-        <button data-target="modal1" class="btn modal-trigger deep-purple lighten-2 btn-small">Comment</button>
+          <form @submit.prevent action="{% url 'capstone_app:like_update' update.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ update.id }}">
+            <button class="btn waves-effect waves-light deep-purple lighten-2 input-field btn-small"
+              id="id">Like</button>
+          </form>
+
+          <button data-target="modal1" class="btn modal-trigger deep-purple lighten-2 btn-small">Comment</button>
+          <div class="divider"></div>
+
+        </div>
+
         <div class="divider"></div>
-
-      </div>
-
-      <div class="divider"></div>
 
         <div id="modal1" class="modal">
           <div class="modal-content">
@@ -223,8 +219,6 @@
         {% endfor %}
 
         {% endfor %}
-
-
 
       </ul>
 
@@ -263,6 +257,12 @@
       var elems = document.querySelectorAll('.modal');
       var instances = M.Modal.init(elems);
     });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  })
 
   </script>
 
