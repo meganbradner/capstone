@@ -73,6 +73,7 @@
 
           <div class="row">
             <form @submit.prevent="findBook" class="col s12">
+              {% csrf_token %}
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">book</i>
@@ -104,33 +105,32 @@
               <a v-bind:href="foundBooks.items[0].volumeInfo.previewLink" target="_blank">Click here to read a preview  of the book!</a>
 
 
-
             <div class="container center-align">
 
               <form @submit="alreadyRead">
+                {% csrf_token %}
                 <input type="hidden" v-model="newBook">
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
                   Add to read
                 </button>
-                {% csrf_token %}
               </form>
 
 
               <form @submit="wantToRead">
+                {% csrf_token %}
                 <input type="hidden" v-model="newBook">
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
                   Add to want to read
                 </button>
-                {% csrf_token %}
               </form>
 
 
               <form @submit="currentlyReading">
+                {% csrf_token %}
                 <input type="hidden" v-model="newBook">
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
                   Add to currently reading
                 </button>
-                {% csrf_token %}
               </form>
 
 
