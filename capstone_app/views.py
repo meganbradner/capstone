@@ -69,10 +69,11 @@ def timeline(request):
 
         form = UpdateForm(request.POST)
 
+
         if form.is_valid():
 
             form.save()
-
+            
             return redirect('capstone_app:timeline')
 
 
@@ -118,7 +119,8 @@ def add_current(request):
             data = json.loads(request.body)
             Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), currently_reading=True, reader=request.user)
 
-        return HttpResponse('done!')
+            return redirect('capstone_app:browse')
+
 
 def add_read(request): 
 
@@ -129,7 +131,8 @@ def add_read(request):
             data = json.loads(request.body)
             Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), read=True, reader=request.user)
 
-        return HttpResponse('done!')
+            return redirect('capstone_app:browse')
+
 
 def add_want(request): 
 
@@ -141,7 +144,8 @@ def add_want(request):
             Book.objects.create(title=data.get('title'), author=data.get('author'), image=data.get('image'), want_to_read=True, reader=request.user)
 
 
-        return HttpResponse('done!')
+            return redirect('capstone_app:browse')
+
 
 
 def finished(request, id): 

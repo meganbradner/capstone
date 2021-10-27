@@ -108,7 +108,7 @@
 
             <div class="container center-align">
 
-              <form @submit.prevent="alreadyRead">
+              <form @submit="alreadyRead">
                 <input type="hidden" v-model="newBook">
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
                   Add to read
@@ -117,7 +117,7 @@
               </form>
 
 
-              <form @submit.prevent="wantToRead">
+              <form @submit="wantToRead">
                 <input type="hidden" v-model="newBook">
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
                   Add to want to read
@@ -126,7 +126,7 @@
               </form>
 
 
-              <form @submit.prevent="currentlyReading">
+              <form @submit="currentlyReading">
                 <input type="hidden" v-model="newBook">
                 <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
                   Add to currently reading

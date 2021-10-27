@@ -77,7 +77,7 @@
 
       <h5 class="center-align">Update your reading progress:</h5>
 
-      <form method="POST" class="update-form" action="">
+      <form method="POST" class="update-form" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <!-- {{ form|crispy }} -->
         {% for field in form %}
@@ -134,15 +134,8 @@
 
             <br>
 
-            {% for book in books %}
+            <img src="{{ update.book.image }}" alt="book image">
 
-            {% if update.book in book.title %}
-
-            <img src="{{ book.image }}" alt="book image">
-
-            {% endif %}
-
-            {% endfor %}
 
           </p>
           <a href="#!" class="secondary-content"><i class="material-icons">bookmark</i></a>
@@ -170,7 +163,7 @@
 
             {% for comment in comments %}
 
-            {% if comment.book_name in update.book %}
+            {% if comment.book_name in update.book.title %}
 
             <li class="collection-item">
 

@@ -26,12 +26,13 @@ class Book(models.Model):
     reader = models.ForeignKey(User, on_delete=models.PROTECT, related_name='reader', null=True)
     image = models.ImageField(upload_to="images/", null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
 class ReadingUpdate(models.Model):
     name = models.CharField(max_length=50, null=True)
-    book = models.CharField(max_length=100, null=True)
+    # book = models.CharField(max_length=100, null=True)
+    book = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book_name', null=True)
     update = models.TextField(max_length=200)
     page_number = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
@@ -39,8 +40,8 @@ class ReadingUpdate(models.Model):
     number_of_likes = models.IntegerField(default=0)
     number_of_comments = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.book
+    def __unicode__(self):
+        return self.name
 
 class Comments(models.Model):
     # post = models.ForeignKey(ReadingUpdate, on_delete=models.PROTECT, related_name='commented_post')
