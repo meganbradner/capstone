@@ -60,7 +60,15 @@
   </nav>
 
   <main>
-
+    
+    <div class="carousel">
+      <a class="carousel-item" href="#" target="_blank"><img src="http://books.google.com/books/content?id=xcL3DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=KCFsxAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=mmWODQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=xyCGDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=D6uZDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+    </div>
+    
     <div id="app">
 
       <div class="container">
@@ -102,40 +110,41 @@
               [[ foundBooks.items[0].volumeInfo.description ]]
               <br>
               <br>
-              <a v-bind:href="foundBooks.items[0].volumeInfo.previewLink" target="_blank">Click here to read a preview  of the book!</a>
+              <a v-bind:href="foundBooks.items[0].volumeInfo.previewLink" target="_blank">Click here to read a preview
+                of the book!</a>
 
 
-            <div class="container center-align">
+              <div class="container center-align">
 
-              <form @submit="alreadyRead">
-                {% csrf_token %}
-                <input type="hidden" v-model="newBook">
-                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
-                  Add to read
-                </button>
-              </form>
-
-
-              <form @submit="wantToRead">
-                {% csrf_token %}
-                <input type="hidden" v-model="newBook">
-                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
-                  Add to want to read
-                </button>
-              </form>
+                <form @submit="alreadyRead">
+                  {% csrf_token %}
+                  <input type="hidden" v-model="newBook">
+                  <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
+                    Add to read
+                  </button>
+                </form>
 
 
-              <form @submit="currentlyReading">
-                {% csrf_token %}
-                <input type="hidden" v-model="newBook">
-                <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
-                  Add to currently reading
-                </button>
-              </form>
+                <form @submit="wantToRead">
+                  {% csrf_token %}
+                  <input type="hidden" v-model="newBook">
+                  <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
+                    Add to want to read
+                  </button>
+                </form>
 
 
+                <form @submit="currentlyReading">
+                  {% csrf_token %}
+                  <input type="hidden" v-model="newBook">
+                  <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" type="submit">
+                    Add to currently reading
+                  </button>
+                </form>
+
+
+              </div>
             </div>
-          </div>
 
           </div>
 
@@ -173,7 +182,7 @@
 
   </main>
 
-  <footer class="page-footer deep-purple accent-1">
+  <footer class="page-footer deep-purple lighten-3">
     <!-- <div class="container">
       <div class="row">
          <div class="col l6 s12">
@@ -197,6 +206,14 @@
       </div>
     </div>
   </footer>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.carousel');
+      var instances = M.Carousel.init(elems);
+    });
+  </script>
 
 </body>
 

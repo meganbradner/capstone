@@ -26,6 +26,10 @@
 
 
   <style>
+    #novel {
+      padding-left: 10px;
+    }
+
     .update {
       padding: 20px;
     }
@@ -54,7 +58,7 @@
 
   <nav>
     <div class="nav-wrapper deep-purple lighten-3">
-      <a href="{% url 'capstone_app:index' %}" class="brand-logo">Novel Idea</a>
+      <a href="{% url 'capstone_app:index' %}" class="brand-logo" id="novel">Novel Idea</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="nav-item">
           <a class="nav-link link-info" href="{% url 'capstone_app:profile' %}">{% if user.is_authenticated %}
@@ -226,24 +230,24 @@
 
   </main>
 
-  <footer class="page-footer deep-purple accent-1">
-    <div class="container">
+  <footer class="page-footer deep-purple lighten-3">
+    <!-- <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <!-- <h5 class="white-text">Footer Content</h5> -->
-          <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
         </div>
         <div class="col l4 offset-l2 s12">
-          <!-- <h5 class="white-text">Links</h5>
+          <h5 class="white-text">Links</h5>
               <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">About</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://developers.google.com/books">API</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul> -->
+              </ul>
         </div>
-      </div>
-    </div>
+      </div> 
+    </div> -->
     <div class="footer-copyright center-align">
       <div class="container">
         © 2021 Megan Bradner
