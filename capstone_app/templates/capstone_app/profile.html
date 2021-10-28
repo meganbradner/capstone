@@ -48,7 +48,7 @@
 <body>
 
   <nav>
-    <div class="nav-wrapper deep-purple accent-1">
+    <div class="nav-wrapper deep-purple lighten-3">
       <a href="{% url 'capstone_app:index' %}" class="brand-logo" id="novel">Novel Idea</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="nav-item">
@@ -167,7 +167,7 @@
         {% if book.reader == user %}
 
         {% if book.want_to_read == True %}
-
+        
         <img src="{{ book.image }}" class="book">
 
         <form @submit.prevent action="{% url 'capstone_app:start_reading' book.id %}" method="POST">
