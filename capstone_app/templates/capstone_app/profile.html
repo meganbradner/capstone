@@ -42,6 +42,10 @@
       padding: 20px;
 
     }
+
+    #words {
+            padding: 15px;
+        }
   </style>
 
 </head>
@@ -166,12 +170,13 @@
 
               <h4 style="text-decoration: underline">Want to read:</h4>
 
-              <div class="container left">
-              {% for book in books %}
+              <div>
 
-              {% if book.reader == user %}
+                {% for book in books %}
 
-              {% if book.want_to_read == True %}
+                {% if book.reader == user %}
+
+                {% if book.want_to_read == True %}
 
                 <img src="{{ book.image }}" class="book">
 
@@ -183,9 +188,9 @@
                 </form>
 
                 {% endif %}
-                
+
                 {% endif %}
-                
+
                 {% endfor %}
               </div>
 
@@ -202,28 +207,29 @@
   </main>
 
   <footer class="page-footer deep-purple lighten-3">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <!-- <h5 class="white-text">Footer Content</h5> -->
-          <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+    <!-- <div class="container"> -->
+    <!-- <div class="row">
+            <div class="col l6 s12"> -->
+    <!-- <h5 class="white-text">Footer Content</h5> -->
+    <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+    <!-- </div>
+            <div class="col l4 offset-l2 s12"> -->
+    <!-- <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+            </div>
         </div>
-        <div class="col l4 offset-l2 s12">
-          <!-- <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul> -->
-        </div>
-      </div>
+    </div> -->
+    <!-- <div class="footer-copyright center-align"> -->
+    <div class="container center-align" id="words">
+      © 2021 Megan Bradner
     </div>
-    <div class="footer-copyright center-align">
-      <div class="container">
-        © 2021 Megan Bradner
-      </div>
     </div>
+
   </footer>
 
 </body>

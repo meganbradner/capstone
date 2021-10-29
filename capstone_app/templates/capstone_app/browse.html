@@ -35,6 +35,11 @@
     h2 {
       padding-bottom: 30px;
     }
+
+
+    #words {
+            padding: 15px;
+        }
   </style>
 
 
@@ -60,21 +65,26 @@
   </nav>
 
   <main>
-    
+
     <div class="carousel">
 
-      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=xcL3DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img
+          src="http://books.google.com/books/content?id=xcL3DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
 
-      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=KCFsxAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img
+          src="http://books.google.com/books/content?id=KCFsxAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></a>
 
-      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=mmWODQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img
+          src="http://books.google.com/books/content?id=mmWODQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
 
-      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=xyCGDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+      <a class="carousel-item" href="#"><img
+          src="http://books.google.com/books/content?id=xyCGDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
 
-      <a class="carousel-item" href="#"><img src="http://books.google.com/books/content?id=D6uZDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
-    
+      <a class="carousel-item" href="#"><img
+          src="http://books.google.com/books/content?id=D6uZDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></a>
+
     </div>
-    
+
     <div id="app">
 
       <div class="container">
@@ -84,6 +94,8 @@
         <div class="section center-align">
 
           <h2>Search for a book:</h2>
+
+          <p>Please enter the name of the book you'd like to add to one of your shelves</p>
 
           <div class="row">
             <form @submit.prevent="findBook" class="col s12">
@@ -189,28 +201,29 @@
   </main>
 
   <footer class="page-footer deep-purple lighten-3">
-    <!-- <div class="container">
-      <div class="row">
-         <div class="col l6 s12">
-           <h5 class="white-text">Footer Content</h5> 
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> 
-        </div> 
-        <div class="col l4 offset-l2 s12"> 
-          <h5 class="white-text">Links</h5> 
-              <ul> 
-                <li><a class="grey-text text-lighten-3" href="https://developers.google.com/books">Link to Google Books API</a></li> 
-                 <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> 
-              </ul> 
+    <!-- <div class="container"> -->
+    <!-- <div class="row">
+            <div class="col l6 s12"> -->
+    <!-- <h5 class="white-text">Footer Content</h5> -->
+    <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+    <!-- </div>
+            <div class="col l4 offset-l2 s12"> -->
+    <!-- <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+            </div>
         </div>
-      </div>
     </div> -->
-    <div class="footer-copyright center-align">
-      <div class="container">
-        © 2021 Megan Bradner
-      </div>
+    <!-- <div class="footer-copyright center-align"> -->
+    <div class="container center-align" id="words">
+      © 2021 Megan Bradner
     </div>
+    </div>
+
   </footer>
 
   <script>

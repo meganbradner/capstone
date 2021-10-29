@@ -69,22 +69,19 @@ const App = {
                     'X-CSRFToken': this.csrfmiddlewaretoken
                 }
             }).then(response => this.findBook())
-        }
+        },
 
 
         // findAuthor() {
         //     axios({
         //         method: 'get',
         //         url: `https://www.googleapis.com/books/v1/volumes?q=${this.userAuthor}`,
-        //         // params: {
-        //         //     q: this.userAuthor
-        //         // },
         //     }).then(response => {
-        //         console.log(response.data.items[0].volumeInfo)
-        //         this.foundAuthors = response.data.items[0].volumeInfo
+        //         console.log(response.data)
+        //         this.foundAuthors = response.data.items
 
         //     })
-        // },
+        // }
 
     },
     mounted() {

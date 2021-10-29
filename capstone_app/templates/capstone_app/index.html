@@ -9,7 +9,7 @@
 
     {% load static %}
 
-  <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'capstone_app/style.css' %}">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+
+    <style>
+        #words {
+            padding: 15px;
+        }
+    </style>
 </head>
 
 <body>
@@ -50,24 +56,23 @@
 
         <div class="parallax-container">
 
-            <div class="parallax"><img src="{% static 'capstone_app/images/purple.jpeg' %}" alt="books"></div>
+            <div class="parallax"><img src="{% static 'capstone_app/images/coolpurp.jpeg' %}" alt="books"></div>
         </div>
         <div class="section white">
             <div class="row container">
                 <h2 class="header center-align">Novel Idea</h2>
-                <p class="grey-text text-darken-3 lighten-3 center-align">Welcome to Novel Idea, a place where readers can keep track of what they're reading and connect with other book lovers along the way!</p>
+                <p class="grey-text text-darken-3 lighten-3 center-align">Welcome to Novel Idea, a place where readers
+                    can keep track of what they're reading and connect with other book lovers along the way!</p>
             </div>
         </div>
         <div class="parallax-container">
-            <div class="parallax"><img src="{% static 'capstone_app/images/pages.jpeg' %}"></div>
+            <div class="parallax"><img src="{% static 'capstone_app/images/books.jpeg' %}"></div>
         </div>
 
         <div class="divider"></div>
         <div class="section">
 
             {% if user.is_authenticated %}
-
-            
 
 
             {% else %}
@@ -91,7 +96,7 @@
                         </div>
 
 
-                        <button class="btn waves-effect waves-light green lighten-4" type="submit" name="action">Submit
+                        <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
                         </button>
 
@@ -114,33 +119,34 @@
             </div>
         </div>
         {% endif %}
-    </main> 
+    </main>
 
 
 
     <footer class="page-footer deep-purple lighten-3">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <!-- <h5 class="white-text">Footer Content</h5> -->
-                    <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <!-- <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul> -->
+        <!-- <div class="container"> -->
+        <!-- <div class="row">
+                <div class="col l6 s12"> -->
+        <!-- <h5 class="white-text">Footer Content</h5> -->
+        <!-- <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+        <!-- </div>
+                <div class="col l4 offset-l2 s12"> -->
+        <!-- <h5 class="white-text">Links</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                            </ul>
                 </div>
             </div>
+        </div> -->
+        <!-- <div class="footer-copyright center-align"> -->
+        <div class="container center-align" id="words">
+            © 2021 Megan Bradner
         </div>
-        <div class="footer-copyright center-align">
-            <div class="container">
-                © 2021 Megan Bradner
-            </div>
         </div>
+
     </footer>
 
     <script>
