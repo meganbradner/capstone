@@ -25,6 +25,7 @@
 
     #image {
       box-shadow: 20px 20px 10px #69696b56;
+
     }
 
     h1 {
@@ -67,130 +68,136 @@
 
   <main>
 
-  <div class="container">
+    <div class="container">
 
-    <div class="section">
+      <div class="section">
 
-      {% if user.is_authenticated %}
-
-      <div class="row">
+        {% if user.is_authenticated %}
 
         <div class="row">
 
-          <div class="col s12">
-            <h1 class="center-align">
-              {{ user.first_name }} {{ user.last_name }}
-            </h1>
-            <!-- <p class="right-align">{{ user.username }}</p> -->
-          </div>
+          <div class="row">
 
-          <div class="col s6">
-            <img class="responsive-img" id="image" width="300" src="{{ user.icon.url }}"
-              alt="{{ user.first_name }}">
-          </div>
-          <div class="col s6">
-            <h5 class="center-align">About the reader:</h5>
+            <div class="col s12">
+              <h1 class="center-align">
+                {{ user.first_name }} {{ user.last_name }}
+              </h1>
+              <!-- <p class="right-align">{{ user.username }}</p> -->
+            </div>
+
+            <div class="col s6">
+
+              <img class="responsive-img" id="image" width="300" src="{{ user.icon.url }}" alt="{{ user.first_name }}">
+            </div>
+            <div class="col s6">
+              <h5 class="center-align">About the reader:</h5>
               <p class="center-align flow-text">{{ user.bio }}</p>
+            </div>
           </div>
-        </div>
 
 
-        <!-- <blockquote class="center-align">
+          <!-- <blockquote class="center-align">
           favorite quote from user?????? 
         </blockquote> -->
 
-        <br>
+          <br>
+
+
+        </div>
 
 
       </div>
 
+      <div class="divider"></div>
 
-    </div>
+      <div class="section container">
 
-    <div class="divider"></div>
+        <div class="center-align">
 
-    <div class="section container">
+          <h4 style="text-decoration: underline">Currently reading:</h4>
 
-      <div class="center-align">
+          {% for book in books %}
 
-        <h4 style="text-decoration: underline">Currently reading:</h4>
+          {% if book.reader == user %}
 
-        {% for book in books %}
+          {% if book.currently_reading == True %}
 
-        {% if book.reader == user %}
+          <div>
+            <img src="{{ book.image }}" class="book">
 
-        {% if book.currently_reading == True %}
+            <form @submit.prevent action="{% url 'capstone_app:finished' book.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{ book.id }}">
+              <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">I've finished this
+                book!</button>
+            </form>
+            <div>
 
-        <img src="{{ book.image }}" class="book">
 
-        <form @submit.prevent action="{% url 'capstone_app:finished' book.id %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="{{ book.id }}">
-          <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">I've finished this
-            book!</button>
-        </form>
+              {% endif %}
+
+              {% endif %}
+
+              {% endfor %}
+
+            </div>
+
+            <div class="center-align">
+
+              <h4 style="text-decoration: underline">Read:</h4>
+
+              {% for book in books %}
+
+              {% if book.reader == user %}
+
+              {% if book.read == True %}
+
+              <img src="{{ book.image }}" class="book">
+
+              {% endif %}
+
+              {% endif %}
+
+              {% endfor %}
+
+            </div>
+
+            <div class="center-align">
+
+              <h4 style="text-decoration: underline">Want to read:</h4>
+
+              <div class="container left">
+              {% for book in books %}
+
+              {% if book.reader == user %}
+
+              {% if book.want_to_read == True %}
+
+                <img src="{{ book.image }}" class="book">
+
+                <form @submit.prevent action="{% url 'capstone_app:start_reading' book.id %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="id" value="{{ book.id }}">
+                  <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">Move to
+                    currently reading</button>
+                </form>
+
+                {% endif %}
+                
+                {% endif %}
+                
+                {% endfor %}
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
 
         {% endif %}
-
-        {% endif %}
-
-        {% endfor %}
 
       </div>
-
-      <div class="center-align">
-
-        <h4 style="text-decoration: underline">Read:</h4>
-
-        {% for book in books %}
-
-        {% if book.reader == user %}
-
-        {% if book.read == True %}
-
-        <img src="{{ book.image }}" class="book">
-
-        {% endif %}
-
-        {% endif %}
-
-        {% endfor %}
-
-      </div>
-
-      <div class="center-align">
-
-        <h4 style="text-decoration: underline">Want to read:</h4>
-
-        {% for book in books %}
-
-        {% if book.reader == user %}
-
-        {% if book.want_to_read == True %}
-        
-        <img src="{{ book.image }}" class="book">
-
-        <form @submit.prevent action="{% url 'capstone_app:start_reading' book.id %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="{{ book.id }}">
-          <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">Move to currently reading</button>
-        </form>
-
-        {% endif %}
-
-        {% endif %}
-
-        {% endfor %}
-
-      </div>
-    </div>
-
-
-  </div>
-
-  {% endif %}
-
-  </div>
 
   </main>
 
@@ -218,7 +225,7 @@
       </div>
     </div>
   </footer>
-  
+
 </body>
 
 </html>

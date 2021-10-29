@@ -6,14 +6,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model
 
 import json
+from random import choice
 
 from capstone_app.forms import CommentForm, UpdateForm
 
 from .models import User, Book, ReadingUpdate, Comments
 
 
-# def super_check(user):
-#     return user.username.contains('super')
 
 def index(request):
 
@@ -49,14 +48,13 @@ def profile(request):
     return render(request, 'capstone_app/profile.html', context)
 
 def browse(request):
-
  
     users = User.objects.all(),
     books = Book.objects.all()
 
     context = {
         'users': users,
-        'books': books
+        'books': books,
     }
 
     return render(request, 'capstone_app/browse.html', context)
@@ -168,6 +166,8 @@ def like_update(request, id):
     all_likes.save()
 
     return redirect('capstone_app:timeline')
+   
+#   return redirect('/timeline' + str(update.id)) 
 
 def start_reading(request, id): 
 

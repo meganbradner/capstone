@@ -50,6 +50,15 @@
     #section {
       display: inline;
     }
+
+    #icon {
+      color: #9575CC;
+    }
+
+    #form-collection {
+      padding: 20px;
+      margin-top: 25px;
+    }
   </style>
 
 </head>
@@ -80,13 +89,17 @@
 
       <h5 class="center-align">Update your reading progress:</h5>
 
-      <form method="POST" class="update-form" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
+      <div class="collection" id="form-collection">
 
-        <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
-          name="action">Submit</button>
-      </form>
+        <form method="POST" class="update-form" action="">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <button class="shelf waves-effect waves-light btn-small deep-purple lighten-2" type="submit"
+            name="action">Submit</button>
+        </form>
+
+      </div>
 
     </div>
 
@@ -111,29 +124,25 @@
 
         {% if update.name in user.first_name %}
 
-        <li class="collection-item avatar">
 
-          <img src="{{ user.icon.url }}" alt="user icon" class="circle">
+
+        <li class="collection-item avatar" id="{{ update.id }}">
+
+          <img src="{{ user.icon.url }}" alt="user icon" id="icon" class="circle">
+
+          <img src="{{ user.icon.url }}" alt="user icon" id="icon" class="circle">
+
 
           <span class="title">
             {{ user.username }}
           </span>
 
+          <p>Currently on page: {{ update.page_number}} of <br><img src="{{ update.book.image }}" alt="book image"><br>
 
-          <p>"{{ update.update }}"<br><br>
-
-            on page
-            {{ update.page_number }}
-            of:
-
-            <br>
-            <br>
-
-            <img src="{{ update.book.image }}" alt="book image">
-
+            "{{ update.update }}"<br><br>
 
           </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">bookmark</i></a>
+          <a href="#!" class="secondary-content"><i class="material-icons" id="icon">bookmark</i></a>
 
           <br>
 
@@ -186,7 +195,7 @@
 
         <div class="valign-wrapper">
 
-          <form @submit.prevent action="{% url 'capstone_app:like_update' update.id %}" method="POST">
+          <form action="{% url 'capstone_app:like_update' update.id %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ update.id }}">
             <button class="btn waves-effect waves-light deep-purple lighten-2 input-field btn-small"
