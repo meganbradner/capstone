@@ -44,8 +44,10 @@
     }
 
     #words {
-            padding: 15px;
-        }
+      padding: 15px;
+    }
+
+
   </style>
 
 </head>
@@ -183,8 +185,7 @@
                 <form @submit.prevent action="{% url 'capstone_app:start_reading' book.id %}" method="POST">
                   {% csrf_token %}
                   <input type="hidden" name="id" value="{{ book.id }}">
-                  <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">Move to
-                    currently reading</button>
+                  <button class="btn waves-effect waves-light deep-purple lighten-2 input-field" id="id">Move to currently reading</button>
                 </form>
 
                 {% endif %}
@@ -196,7 +197,6 @@
 
             </div>
           </div>
-
 
         </div>
 
