@@ -160,11 +160,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-cloudinary.config( 
-  cloud_name = "mbradner", 
-  api_key = "216825939494469", 
-  api_secret = "5OBwCDFhiJFXZiu2KrzxXiayDnE" 
-)
+# cloudinary.config( 
+#   cloud_name = "mbradner", 
+#   api_key = "216825939494469", 
+#   api_secret = "5OBwCDFhiJFXZiu2KrzxXiayDnE" 
+# )
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mbradner',
+    'API_KEY': '216825939494469',
+    'API_SECRET': '5OBwCDFhiJFXZiu2KrzxXiayDnE',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 import django_on_heroku
 django_on_heroku.settings(locals())

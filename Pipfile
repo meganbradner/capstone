@@ -12,6 +12,7 @@ django-on-heroku = "*"
 gunicorn = "*"
 channels = "*"
 cloudinary = "*"
+dj3-cloudinary-storage = "*"
 
 [dev-packages]
 
