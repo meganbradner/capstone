@@ -25,7 +25,7 @@ class Book(models.Model):
     want_to_read = models.BooleanField(default=False)
     reader = models.ForeignKey(User, on_delete=models.PROTECT, related_name='reader', null=True)
     # image = models.ImageField(upload_to="images/", null=True)
-    image = models.URLField()
+    image = models.URLField(max_length=400, null=True)
 
     def __str__(self):
         return self.title
