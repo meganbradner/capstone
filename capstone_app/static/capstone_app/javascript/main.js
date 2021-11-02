@@ -27,6 +27,7 @@ const App = {
         },
 
         currentlyReading() {
+            console.log("currently reading method running")
             axios({
                 method: 'post',
                 url: '/add-current',
@@ -39,6 +40,7 @@ const App = {
                     'X-CSRFToken': this.csrfmiddlewaretoken
                 }
             }).then(response => this.findBook())
+
         },
 
         alreadyRead() {
