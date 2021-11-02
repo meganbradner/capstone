@@ -16,6 +16,10 @@ import os
 
 import capstone_app
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -49,7 +53,8 @@ INSTALLED_APPS = [
     'users', 
 
     'channels',
-    'chat'
+    'chat',
+    'cloudinary'
 ]
 
 ASGI_APPLICATION = 'capstone.asgi.application'
@@ -154,6 +159,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
- 
+
+cloudinary.config( 
+  cloud_name = "mbradner", 
+  api_key = "216825939494469", 
+  api_secret = "5OBwCDFhiJFXZiu2KrzxXiayDnE" 
+)
+
 import django_on_heroku
 django_on_heroku.settings(locals())
