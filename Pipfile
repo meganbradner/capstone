@@ -8,6 +8,8 @@ django = "*"
 pillow = "*"
 requests = "*"
 crispy-forms-materialize = "*"
+django-on-heroku = "*"
+gunicorn = "*"
 
 [dev-packages]
 
