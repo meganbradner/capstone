@@ -14,8 +14,6 @@ from pathlib import Path
 
 import os
 
-from secrets import key, secret
-
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -160,6 +158,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+from hidden import key, secret
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'mbradner',
