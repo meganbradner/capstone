@@ -6,11 +6,9 @@ User = get_user_model
 
 import json
 
-
 from capstone_app.forms import CommentForm, UpdateForm
 
 from .models import User, Book, ReadingUpdate, Comments
-
 
 
 def index(request):

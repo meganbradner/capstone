@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,42 @@
     <title>Chat</title>
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <style>
+        .container {
+            padding: 30px;
+        }
+    </style>
 
 </head>
-<body>
-    <h1>What chat room would you like to enter?</h1>
 
-    <input id="room-name-input" type="text" size="50"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+<body>
+
+    <h1 class="center-align">Let's chat!</h1>
+
+    <div class="container">
+
+        <p class="flow-text">Want to talk to other users about the books you love? Share some recommendations? Just type the genre you'd
+            like to discuss in the bar below and you'll be redirected to a genre specific chat room!</p>
+
+        <input id="room-name-input" type="text" size="50"><br>
+        <input id="room-name-submit" type="button" value="Enter">
+
+    </div>
 
 
 
     <script>
-       document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function(e) {
-            if (e.keyCode === 13) { 
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function (e) {
+            if (e.keyCode === 13) {
                 document.querySelector('#room-name-submit').click();
             }
         };
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
+        document.querySelector('#room-name-submit').onclick = function (e) {
             var roomName = document.querySelector('#room-name-input').value;
             window.location.pathname = '/chat/' + roomName + '/';
         };
@@ -33,4 +51,5 @@
     </script>
 
 </body>
+
 </html>

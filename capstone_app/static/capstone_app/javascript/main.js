@@ -27,9 +27,8 @@ const App = {
         },
 
         currentlyReading() {
-            console.log("currently reading method running")
             axios({
-                method: 'POST',
+                method: 'post',
                 url: '/add-current',
                 data: {
                     title: this.foundBooks.items[0].volumeInfo.title,
@@ -45,7 +44,7 @@ const App = {
 
         alreadyRead() {
             axios({
-                method: 'POST',
+                method: 'post',
                 url: '/add-read',
                 data: {
                     title: this.foundBooks.items[0].volumeInfo.title,
@@ -60,7 +59,7 @@ const App = {
 
         wantToRead() {
             axios({
-                method: 'POST',
+                method: 'post',
                 url: '/add-want',
                 data: {
                     title: this.foundBooks.items[0].volumeInfo.title,

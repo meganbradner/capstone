@@ -9,15 +9,22 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <style>
+
+        .container {
+            padding: 40px;
+        }
+
+    </style>
 </head>
 
 <body>
 
+    <h2 class="center-align">Welcome!</h2>
+    
     <div class="container">
-
-        <h2>Welcome!</h2>
-
-        <textarea id="chat-log" cols="71" rows="20"></textarea><br>
+        
+        <textarea id="chat-log" cols="71" rows="50"></textarea><br>
         <input id="chat-message-input" type="text" size="82"><br>
         <input id="chat-message-submit" type="button" value="Send">
         {{ room_name|json_script:"room-name" }}
@@ -64,4 +71,4 @@
 
 </body>
 
-</html> 
+</html>
