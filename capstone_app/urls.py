@@ -9,7 +9,7 @@ app_name = 'capstone_app'
 urlpatterns = [
 
     path('', views.index, name='index'),
-    path('<slug:slug>', views.profile, name='profile'),
+    path('profile', views.profile, name='profile'),
     path('browse', views.browse, name='browse'),
     path('timeline', views.timeline, name='timeline'),
     path('add-current', views.add_current, name='add_current'),
