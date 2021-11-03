@@ -1,10 +1,7 @@
 from django.contrib.auth import authenticate
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils import timezone
-
-
-from django.urls import reverse
+from autoslug import AutoSlugField
 
 
 class User(AbstractUser):
@@ -12,11 +9,12 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50)
     bio = models.CharField(max_length=200)
     icon = models.ImageField(upload_to="images/")
+    slug = AutoSlugField(populate_from='username', null=True)
+
 
     def __str__(self):
         return self.username
     
-
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)

@@ -1,12 +1,11 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.text import slugify 
 
 from django.contrib.auth import get_user_model
 User = get_user_model
 
 import json
-from random import choice
+
 
 from capstone_app.forms import CommentForm, UpdateForm
 
@@ -24,7 +23,7 @@ def index(request):
     return render(request, 'capstone_app/index.html', context)
 
 
-def profile(request):
+def profile(request, slug):
 
     books = Book.objects.all()
     users = User.objects.all()
@@ -41,11 +40,11 @@ def profile(request):
         'users': users,
         'current': current,
         'read': read,
-        'want': want
+        'want': want,
   
     }
 
-    return render(request, 'capstone_app/profile.html', context)
+    return render(request, 'capstone_app/profile.html' , context)
 
 def browse(request):
  

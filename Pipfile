@@ -13,6 +13,7 @@ gunicorn = "*"
 channels = "*"
 cloudinary = "*"
 dj3-cloudinary-storage = "*"
+django-autoslug = "*"
 
 [dev-packages]
 
