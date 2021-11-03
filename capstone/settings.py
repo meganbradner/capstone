@@ -14,8 +14,6 @@ from pathlib import Path
 
 import os
 
-import capstone_app
-
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -160,16 +158,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# cloudinary.config( 
-#   cloud_name = "mbradner", 
-#   api_key = "216825939494469", 
-#   api_secret = "5OBwCDFhiJFXZiu2KrzxXiayDnE" 
-# )
+from secrets import key, secret
+
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'mbradner',
-    'API_KEY': '216825939494469',
-    'API_SECRET': '5OBwCDFhiJFXZiu2KrzxXiayDnE',
+    'API_KEY': key,
+    'API_SECRET': secret,
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
