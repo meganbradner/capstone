@@ -14,6 +14,8 @@ from pathlib import Path
 
 import os
 
+from secrets import key, secret
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -157,8 +159,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-from secrets import key, secret
 
 
 CLOUDINARY_STORAGE = {
