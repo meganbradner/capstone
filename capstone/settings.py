@@ -162,7 +162,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_on_heroku
 django_on_heroku.settings(locals())
 
-# from hidden import key, secret
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'mbradner',
