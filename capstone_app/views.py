@@ -21,7 +21,7 @@ def index(request):
     return render(request, 'capstone_app/index.html', context)
 
 
-def profile(request, slug):
+def profile(request):
 
     books = Book.objects.all()
     users = User.objects.all()
