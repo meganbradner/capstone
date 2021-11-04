@@ -39,7 +39,6 @@
             font-style: italic;
             font-size: 14.5px;
         }
-
     </style>
 </head>
 
@@ -95,10 +94,12 @@
         <div class="section white">
             <div class="row container">
                 <h2 class="header center-align">Novel Idea</h2>
-                <p class="grey-text text-darken-3 lighten-3 center-align">Welcome to Novel Idea, a place where readers can keep track of what they're reading and connect with other book lovers along the way!</p>
+                <p class="grey-text text-darken-3 lighten-3 center-align">Welcome to Novel Idea, a place where readers
+                    can keep track of what they're reading and connect with other book lovers along the way!</p>
                 <br><br>
-                <p class="center-align" id="quote">“Books are the quietest and most constant of friends; they are the most accessible and wisest of counselors, and the most patient of teachers.”
-                   <br> ― Charles W. Eliot
+                <p class="center-align" id="quote">“Books are the quietest and most constant of friends; they are the
+                    most accessible and wisest of counselors, and the most patient of teachers.”
+                    <br> ― Charles W. Eliot
                 </p>
             </div>
         </div>
@@ -115,7 +116,7 @@
 
             {% else %}
 
-            <div class="container">
+            <div class="container section scrollspy">
 
                 <h1 class="center-align" id="login">Log in</h1>
 
@@ -197,6 +198,11 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.scrollspy');
+            var instances = M.ScrollSpy.init(elems);
         });
     </script>
 
