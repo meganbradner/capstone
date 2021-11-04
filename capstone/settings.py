@@ -105,9 +105,8 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'DATABASE_URL': 'postgres://zttdpeatnjuzzh:452ef169a7eec98c896d79e0c6061c15b9836afb6b2b241148c05eb702c06dc3@ec2-18-232-216-229.compute-1.amazonaws.com:5432/ddabqla3btggg2',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+ 
     }
 }
 
