@@ -166,8 +166,8 @@ django_on_heroku.settings(locals())
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'mbradner',
-    'API_KEY': os.environ.get('CLOUDINAIRY_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINAIRY_SECRET'),
+    'API_KEY': os.environ.get('CLOUDINARY_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
