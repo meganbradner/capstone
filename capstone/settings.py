@@ -21,7 +21,6 @@ import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -55,9 +54,13 @@ INSTALLED_APPS = [
     'cloudinary'
 ]
 
+AUTH_USER_MODEL = 'capstone_app.User'
+
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
 ASGI_APPLICATION = 'capstone.asgi.application'
 
-CHANNEL_LAYERS = {
+CHANNEL_LAYERS = { 
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
@@ -65,10 +68,6 @@ CHANNEL_LAYERS = {
         }
     }
 }
-
-AUTH_USER_MODEL = 'capstone_app.User'
-
-CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,6 +106,7 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'DATABASE_URL': 'postgres://zttdpeatnjuzzh:452ef169a7eec98c896d79e0c6061c15b9836afb6b2b241148c05eb702c06dc3@ec2-18-232-216-229.compute-1.amazonaws.com:5432/ddabqla3btggg2',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
