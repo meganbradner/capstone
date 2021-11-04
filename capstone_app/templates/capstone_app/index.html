@@ -60,7 +60,7 @@
                     </li>
                     {% else %}
                     Welcome, guest
-                    <li><a class="nav-link link-info" href="#login">Login</a></li>
+                    <li><a href="#login" class="nav-link link-info">Login</a></li>
                     <li><a class="nav-link link-info" href="{% url 'users:new_user' %}">Register</a></li>
                     {% endif %}
                     </a>
@@ -79,7 +79,7 @@
         </li>
         {% else %}
         Welcome, guest
-        <li><a class="nav-link link-info" href="#login">Login</a></li>
+        <li><a class="nav-link link-info">Login</a></li>
         <li><a class="nav-link link-info" href="{% url 'users:new_user' %}">Register</a></li>
         {% endif %}
         </a>
@@ -113,12 +113,13 @@
             {% if user.is_authenticated %}
 
 
+        
 
             {% else %}
 
-            <div class="container section scrollspy">
+            <div class="container">
 
-                <h1 class="center-align" id="login">Log in</h1>
+                <h1 id="login" class="center-align scrollspy">Log in</h1>
 
                 <div class="row center-align">
                     <form class="col s12" action="{% url 'users:log_in' %}" method="POST">
@@ -200,10 +201,11 @@
             var instances = M.Sidenav.init(elems);
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.scrollspy');
-            var instances = M.ScrollSpy.init(elems);
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.scrollspy');
+    var instances = M.ScrollSpy.init(elems);
+  });
+
     </script>
 
 </body>
