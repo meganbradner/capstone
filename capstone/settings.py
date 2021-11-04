@@ -14,6 +14,8 @@ from pathlib import Path
 
 import os
 
+from python_dotenv import load_dotenv
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -162,10 +164,10 @@ django_on_heroku.settings(locals())
 
 # from hidden import key, secret
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'mbradner',
-#     'API_KEY': key,
-#     'API_SECRET': secret,
-# }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mbradner',
+    'API_KEY': os.environ.get('CLOUDINAIRY_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINAIRY_SECRET'),
+}
 
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
