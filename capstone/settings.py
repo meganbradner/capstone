@@ -14,7 +14,7 @@ from pathlib import Path
 
 import os
 
-from python_dotenv import load_dotenv
+from dotenv import load_dotenv
 
 import cloudinary
 import cloudinary.uploader
