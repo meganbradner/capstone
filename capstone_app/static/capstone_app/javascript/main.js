@@ -73,17 +73,6 @@ const App = {
         },
 
 
-        // findAuthor() {
-        //     axios({
-        //         method: 'get',
-        //         url: `https://www.googleapis.com/books/v1/volumes?q=${this.userAuthor}`,
-        //     }).then(response => {
-        //         console.log(response.data)
-        //         this.foundAuthors = response.data.items
-
-        //     })
-        // }
-
     },
     mounted() {
         this.csrfmiddlewaretoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
