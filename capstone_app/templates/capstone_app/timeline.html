@@ -76,6 +76,11 @@
 
       background-color: #c7b0f394;
     }
+
+    #bookmark {
+      font-size: 23px;
+      color: #9575CB;
+    }
   </style>
 
 </head>
@@ -194,7 +199,12 @@
 
 
           </p>
-          <a href="#!" class="secondary-content"><i class="material-icons" id="icon">bookmark</i></a>
+          <!-- <a href="#!" class="secondary-content"><i class="material-icons" id="icon">bookmark</i></a> -->
+          
+          <a href="#!" class="secondary-content">
+            <i class="fas fa-book" id="bookmark"></i>
+          </a>
+
 
           <br>
 
@@ -204,7 +214,9 @@
           <div class="section" id="section">
 
 
-            <p class="gray"><i class="material-icons" style="font-size: 17px;">thumb_up</i>
+            <p class="gray">
+              <!-- <i class="material-icons" style="font-size: 17px;">thumb_up</i> -->
+              <i class="fas fa-thumbs-up"></i>
               likes: {{ update.number_of_likes }}</p>
 
 
@@ -212,7 +224,10 @@
 
           <div class="section" id="section">
 
-            <p class="gray"><i class="material-icons" style="font-size: 17px;">message</i> comments: </p>
+            <p class="gray">
+              <!-- <i class="material-icons" style="font-size: 17px;">message</i>  -->
+              <i class="fas fa-comments"></i>
+              comments: </p>
           </div>
 
 
